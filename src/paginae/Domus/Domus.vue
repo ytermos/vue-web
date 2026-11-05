@@ -1,5 +1,21 @@
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+import { Input } from '@/components/ui/input'
+import { ref } from 'vue';
+
+
+const dialogApertaEst = ref<boolean>(false)
+    
+const quaestio=ref<string>('')
 
  
 
@@ -25,10 +41,40 @@ import Button from '@/components/ui/button/Button.vue';
         </p>
 
     <div class="scale-z-10">
-        <Button variant="domus" class="mr-2">
-        <RouterLink to="/Indecision">Sí o No</RouterLink>
-        </Button>
+       
         
+                <Dialog
+                :open="dialogApertaEst"
+                @update:open="dialogApertaEst = $event"
+                >
+            <DialogTrigger as-child>
+                <Button variant="domus" class="mr-2 ">
+                Sí o No
+                </Button>
+            </DialogTrigger>
+
+            <DialogContent class="sm:max-w-[425px] bg-domus-navy text-white border-domus-cyan">
+                <DialogHeader>
+                <DialogTitle class="text-white">Pregúntame</DialogTitle>
+                <DialogDescription class="text-gray-300">
+                    No sigas con tus dudas, yo te responderé SÍ o NO
+                </DialogDescription>
+                </DialogHeader>
+
+                <div class="mt-4">
+                    <Input
+                    placeholder="Escribe tu pregunta aquí..."
+                    class="bg-domus-navy-input  text-white placeholder:text-gray-400 border-domus-cyan"
+                    v-model="quaestio"
+                    />
+                
+                </div>
+                
+            </DialogContent>
+
+        </Dialog>
+
+
         <Button variant="domus"class="mr-2">
         <RouterLink to="/Batman">Batman</RouterLink>
         </Button>
