@@ -11,13 +11,30 @@ import {
 
 import { Input } from '@/components/ui/input'
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 
 const dialogApertaEst = ref<boolean>(false)
     
 const quaestio=ref<string>('')
 
- 
+ const router = useRouter()
+
+ const cumKeyPressumEnter = ( eventus: KeyboardEvent ) => {
+if (eventus.key === 'Enter') {
+ const textusItinerans = quaestio.value.trim();
+
+ if(textusItinerans.length > 0 && textusItinerans.endsWith('?')) {
+    dialogApertaEst.value = false;
+    router.push({
+        path: '/indecision',
+state: { quaestio: textusItinerans }
+    });
+    quaestio.value = '';
+    }
+
+    }
+}
 
 </script>
 
@@ -66,6 +83,7 @@ const quaestio=ref<string>('')
                     placeholder="Escribe tu pregunta aquí..."
                     class="bg-domus-navy-input  text-white placeholder:text-gray-400 border-domus-cyan"
                     v-model="quaestio"
+                    @keydown="cumKeyPressumEnter"
                     />
                 
                 </div>
