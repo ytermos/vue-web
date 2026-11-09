@@ -1,13 +1,13 @@
 
-<script lang="ts">
+<script setup lang="ts">
 import LogoSimpsons from '@/components/LogoSimpsons.vue';
 import Button from '@/components/ui/button/Button.vue';
 import { useFavoritosStore } from '@/stores/useFavoritos';
 import { Heart } from '@lucide/vue';
 import { storeToRefs } from 'pinia';
 
-// const favoritosStore = useFavoritosStore();
-// const { totalFavoritos } = storeToRefs(favoritosStore);
+const favoritosStore = useFavoritosStore();
+const { totalFavoritos } = storeToRefs(favoritosStore);
 
 </script>
 
@@ -27,19 +27,19 @@ import { storeToRefs } from 'pinia';
     	<strong>This is an unofficial app (even though it looks so cool!)</strong>
 	</div>
 	<div className="mt-8 flex gap-5">
-		<Button class="bg-white text-base border border-black hover:bg-simpsons-red focus:bg-simpsons-red rounded-none h-7.5 py-0.5 px-5">
+		<Button variant="tertiarius" size="elongatis">
       		<RouterLink to="/">Exit</RouterLink>
     	</Button>
-    	<Button>
+    	<Button variant="tertiarius" size="elongatis">
       		<RouterLink to="/simpson/about">Enter</RouterLink>
     	</Button>
 
-		<!-- <div class="flex items-center gap-2 text-black pl-4">
+		<div class="flex items-center gap-2 text-black pl-4">
 			<Heart class="w-7 h-7 fill-simpsons-red text-simpsons-red" />
-			<!-- <span class="font-bold text-2xl">
+			 <span class="font-bold text-2xl">
 				{{ totalFavoritos }}
 			</span> 
-		</div> -->
+		</div>
 		
 	</div>
 	<div class="flex gap-12">
